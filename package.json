@@ -1,0 +1,46 @@
+{
+  "name": "woocommerce-rest-api-typescript",
+  "version": "1.0.0",
+  "description": "WooCommerce REST API - Typescript Library",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "changeset": "changeset",
+    "release": "pnpm run build && changeset publish",
+    "lint": "tsc",
+    "clean": "rm -rf ./dist",
+    "prepack": "npm run clean && npm run build:cjs:esm && npm run build:types",
+    "build": "npm run prepack",
+    "build:types": "tsc --emitDeclarationOnly --declaration",
+    "build:cjs:esm": "tsup ./src/index.ts --format cjs,esm --sourcemap"
+  },
+  "files": [
+    "./dist/**/*"
+  ],
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "keywords": [
+    "wordpress",
+    "woocommerce",
+    "rest",
+    "promise",
+    "node",
+    "typescript",
+    "api"
+  ],
+  "author": "Hunter Bertoson",
+  "license": "MIT",
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "@types/node": "^20.12.7",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5",
+    "vitest": "^1.5.2"
+  }
+}
